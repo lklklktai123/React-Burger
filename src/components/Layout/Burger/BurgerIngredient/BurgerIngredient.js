@@ -31,8 +31,8 @@ class BurgerIngredient extends Component {
       default:
         ingredient = null;
     }
-    console.log(this.props.type);
-    console.log(ingredient);
+    // console.log(this.props.type);
+    // console.log(ingredient);
     return ingredient;
   }
 }

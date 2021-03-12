@@ -4,17 +4,18 @@ import NavigationItems from '../NavigationItems';
 import classes from './SideDraw.module.css';
 import BackDrop from '../../../UI/Backdrop/Backdrop';
 import Aux from '../../../../hoc/AuxHight';
-const sideDraw = probs => {
+import { checkPropTypes } from 'prop-types';
+const sideDraw = props => {
   let attachedClasses = [classes.SideDrawer, classes.Close];
-  if (probs.open) attachedClasses = [classes.SideDrawer, classes.Open];
+  if (props.open) attachedClasses = [classes.SideDrawer, classes.Open];
   return (
     <Aux>
-      <BackDrop show={probs.open} clicked={probs.closed} />
-      <div className={attachedClasses.join(' ')}>
+      <BackDrop show={props.open} clicked={props.closed} />
+      <div className={attachedClasses.join(' ')} onClick={props.closed}>
         <div className={classes.Logo}>
           <Logo />
         </div>
-        <NavigationItems />
+        <NavigationItems isAuthenticated={checkPropTypes.isAuth} />
       </div>
     </Aux>
   );

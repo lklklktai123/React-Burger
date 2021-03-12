@@ -4,6 +4,7 @@ const button = probs => (
   <button
     className={[classes.Button, classes[probs.btnType]].join(' ')}
     onClick={probs.clicked}
+    disabled={probs.disabled}
   >
     {probs.children}
   </button>
