@@ -31,6 +31,6 @@ export const checkValidity = (value, rules) => {
     const pattern = /^\d+$/;
     isValid = pattern.test(value) && isValid;
   }
-
+  console.log(isValid + 'uliti');
   return isValid;
 };

@@ -42,7 +42,7 @@ class Auth extends Component {
   }
 
   inputChangedHandler = (event, controlName) => {
-    const updatedCOntrols = updateObject(this.state.controls, {
+    const updatedControls = updateObject(this.state.controls, {
       [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
         valid: checkValidity(
@@ -52,7 +52,7 @@ class Auth extends Component {
         touched: true,
       }),
     });
-    this.setState({ controls: updatedCOntrols });
+    this.setState({ controls: updatedControls });
   };
   submitHandler = event => {
     event.preventDefault();

@@ -33,7 +33,7 @@ export const initIngredient = () => {
       })
       .catch(error => {
         //console.log(error);
-        this.setState({ error: true });
+        dispatch(fetchIngredientsFailed());
       });
   };
 };
