@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CheckOutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import { Route, Redirect } from 'react-router-dom';
 import ContactData from './ContactData/ContactData';
 import { connect } from 'react-redux';
-class Checkout extends Component {
+const Checkout = props => {
   // state = {
   //   ingredients: null,
   //   totalPrice: 0,
@@ -23,38 +23,35 @@ class Checkout extends Component {
   //   this.setState({ ingredients: ingredients, totalPrice: price });
   // }
 
-  checkOutCancelHandler = () => {
-    this.props.history.goBack();
+  const checkOutCancelHandler = () => {
+    props.history.goBack();
   };
-  checkOutContineHandler = () => {
+  const checkOutContineHandler = () => {
     //console.log(this.props.match.path);
-    this.props.history.replace('checkout/contact-data');
+    props.history.replace('checkout/contact-data');
   };
-  render() {
-    let summary = <Redirect to="/" />;
 
-    if (this.props.ings) {
-      const purchasedRedirect = this.props.purchased ? (
-        <Redirect to="/" />
-      ) : null;
-      summary = (
-        <div>
-          {purchasedRedirect}
-          <CheckOutSummary
-            ingredients={this.props.ings}
-            checkOutContinue={this.checkOutContineHandler}
-            checkOutCancel={this.checkOutCancelHandler}
-          />
-          <Route
-            path={`${this.props.match.path}/contact-data`}
-            component={ContactData}
-          />
-        </div>
-      );
-    }
-    return summary;
+  let summary = <Redirect to="/" />;
+
+  if (props.ings) {
+    const purchasedRedirect = props.purchased ? <Redirect to="/" /> : null;
+    summary = (
+      <div>
+        {purchasedRedirect}
+        <CheckOutSummary
+          ingredients={props.ings}
+          checkOutContinue={checkOutContineHandler}
+          checkOutCancel={checkOutCancelHandler}
+        />
+        <Route
+          path={`${props.match.path}/contact-data`}
+          component={ContactData}
+        />
+      </div>
+    );
   }
-}
+  return summary;
+};
 const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
